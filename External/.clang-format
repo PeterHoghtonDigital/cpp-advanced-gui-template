@@ -1,0 +1,2 @@
+# Disables Clang-Format for third-party libraries
+DisableFormat: true

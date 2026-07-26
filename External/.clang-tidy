@@ -1,0 +1,2 @@
+# Disables Clang-Tidy for third-party libraries
+Checks: '-*'

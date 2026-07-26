@@ -1,0 +1,90 @@
+{
+    // ================================
+    // Build Tasks ('Ctrl + Shift + P' -> 'Tasks: Run Task')
+    // ================================
+    "version": "2.0.0",
+    "tasks": [
+        {
+            // Deletes existing binaries and intermediates from the active configurations build folder
+            "label": "Clean",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "${command:cmake.buildDirectory}",
+                "--target",
+                "clean"
+            ],
+            "group": "none"
+        },
+        {
+            // Builds the project using the active configuration with settings in 'CMakeLists.txt' ('Ctrl + Shift + B')
+            "label": "Build",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "${command:cmake.buildDirectory}"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            // Ensures error and warning logs can be displayed in the problems panel so they can be clicked on and navigated to in the code editor
+            "problemMatcher": {
+                "owner": "cpp",
+                "fileLocation": [
+                    "absolute"
+                ],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            }
+        },
+        {
+            // Runs both the Clean and Build tasks above
+            "label": "Rebuild",
+            "type": "shell",
+            "dependsOn": [
+                "Clean",
+                "Build"
+            ],
+            "dependsOrder": "sequence",
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+        {
+            // Runs the executable as a standalone application (no debugger)
+            "label": "Run",
+            "type": "process",
+            "command": "${command:cmake.launchTargetPath}",
+            "options": {
+                "cwd": "${command:cmake.buildDirectory}"
+            },
+            "args": [],
+            "group": "none",
+            "problemMatcher": []
+        },
+        {
+            // Runs both the Build and Run tasks above
+            "label": "Build & Run",
+            "type": "shell",
+            "dependsOn": [
+                "Build",
+                "Run"
+            ],
+            "dependsOrder": "sequence",
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        }
+    ]
+}

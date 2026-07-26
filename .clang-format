@@ -1,0 +1,98 @@
+# ================================
+# Clang C++ Formatting
+# ================================
+# This .clang-format file defines the coding style formatting rules for C++ code in this project.
+# It enforces Allman-style braces, tab-based indentation, grouped and sorted includes,
+# and disallows single-line control statements or functions.
+
+# Base Style
+BasedOnStyle: LLVM                                # Starts from LLVM defaults
+
+# Indentation
+IndentWidth: 4                                    # Number of spaces for each indent level
+ContinuationIndentWidth: 4                        # Number of spaces for wrapped lines
+TabWidth: 4                                       # Width of a tab character
+UseTab: Always                                    # Use tabs for indentation instead of spaces
+NamespaceIndentation: All                         # Indent code inside namespaces
+IndentExternBlock: true                           # Indent code inside extern blocks
+IndentCaseLabels: true                            # Indent case labels inside switch statements
+AlignConsecutiveAssignments:                      # Don't align `=` signs in consecutive assignments
+  Enabled: false
+AlignConsecutiveDeclarations:                     # Don't align types/variables in consecutive declarations
+  Enabled: false
+
+# Spacing
+SpaceInEmptyParentheses: false                    # No space inside empty parentheses
+SpacesBeforeTrailingComments: 1                   # Add one space before trailing comments
+SpacesInParentheses: false                        # No space inside parentheses
+SpacesInSquareBrackets: false                     # No space inside square brackets
+SpacesInAngles: false                             # No space inside angle brackets
+SpacesInContainerLiterals: true                   # Add spaces inside container literals
+SpaceAfterCStyleCast: false                       # No space after C-style casts
+MaxEmptyLinesToKeep: 1                            # Keep at most one consecutive empty line
+InsertNewlineAtEOF: true                          # Always add a newline at the end of the file
+
+# Wrapping
+ColumnLimit: 120                                  # Maximum line length before wrapping
+ReflowComments: true                              # Automatically wrap multi-line comments to fit within column limit
+BinPackParameters: true                           # Pack function parameters into as few lines as possible
+BinPackArguments: true                            # Pack function call arguments into as few lines as possible
+AllowAllArgumentsOnNextLine: true                 # Allow all arguments to be placed on a single new line
+AllowAllConstructorInitializersOnNextLine: true   # Allow all constructor initializers on a single new line
+BreakStringLiterals: false                        # Don't split long string literals across lines
+
+# Braces
+BreakBeforeBraces: Allman                         # Opening braces always on a new line
+BraceWrapping:                                    # Closing braces always on a new line
+  AfterNamespace: true
+  AfterEnum: true
+  AfterStruct: true
+  AfterUnion: true
+  AfterClass: true
+  AfterFunction: true
+  AfterControlStatement: true
+  AfterExternBlock: true
+AllowShortIfStatementsOnASingleLine: false        # No single line if statements
+AllowShortLoopsOnASingleLine: false               # No single line loops
+AllowShortBlocksOnASingleLine: false              # No single line short blocks
+AllowShortFunctionsOnASingleLine: false           # No single line functions
+AllowShortEnumsOnASingleLine: false               # No single line enums
+AllowShortLambdasOnASingleLine: false             # No single line lambdas
+
+# Includes
+IncludeIsMainRegex: '([-_](test|Test))?$'         # Group #1 - Corresponding include
+IncludeCategories:
+  - Regex: '^<.*>$'                               # Group #2 - System / Third Party includes
+    Priority: 1
+  - Regex: '^".*"$'                               # Group #3 - Project includes
+    Priority: 2
+IncludeBlocks: Regroup                            # Inserts an empty line between groups
+SortIncludes: true                                # Sorts each group alphabetically
+SortUsingDeclarations: true                       # Sorts using declarations alphabetically
+
+# Functions
+AlwaysBreakAfterReturnType: None                  # Never break after declaration return type
+AlwaysBreakAfterDefinitionReturnType: None        # Never break after definition return type
+AlwaysBreakTemplateDeclarations: false            # Keep template declarations on one line if possible
+AlignAfterOpenBracket: false                      # Don't align parameters after opening bracket
+
+# Control Statements
+AllowAllParametersOfDeclarationOnNextLine: false  # Forces parameters to stay on the same line if possible
+SpaceBeforeParens: ControlStatements              # Add space before parentheses in control statements
+SpaceBeforeRangeBasedForLoopColon: true           # Add space before colon in range-based for loops
+
+# Operators
+BreakBeforeBinaryOperators: NonAssignment         # Break before binary operators except assignment
+BreakBeforeTernaryOperators: true                 # Break before ternary operators
+
+# Pointers & References
+PointerAlignment: Left                            # Place * or & next to the type
+DerivePointerAlignment: false                     # Don't copy existing format style for pointer alignment
+
+# Comments
+AlignTrailingComments: false                      # Don't align trailing comments in columns
+FixNamespaceComments: false                       # Don't auto-insert or fix namespace closing comments
+
+# Line Endings
+DeriveLineEnding: false                           # Always use the configured line ending
+LineEnding: LF                                    # Use Unix-style line endings

@@ -1,0 +1,43 @@
+# ================================
+# Clangd Language Server Settings
+# ================================
+# This .clangd file defines the language server settings for C++ code in this project.
+# It enables strict diagnostics, enhanced code completion, inlay hints, and indexing
+# to improve code analysis and editor support.
+
+# Project Settings (applies to all files in project)
+
+InlayHints: 
+  Enabled: Yes              # Enables inlay hints
+  ParameterNames: Yes       # Shows parameter names in function calls
+  DeducedTypes: Yes         # Shows deduced types for variables
+
+Completion:
+  AllScopes: Yes            # Includes symbols from all visible scopes
+
+Hover:
+  ShowAKA: Yes              # Shows alternate type names
+
+Index:
+  Background: Build         # Builds the index in the background
+  StandardLibrary: Yes      # Indexes standard library symbols
+
+---
+
+# Source Settings (applies only to files in Source folder)
+
+If:
+  PathMatch: ^Source/.*
+  
+CompileFlags:
+  Add:
+    - -Wall                 # Enables common compiler warnings
+    - -Wextra               # Enables additional compiler warnings
+    - -Wpedantic            # Enables strict standard compliance warnings
+    - -Wconversion          # Warns about implicit type conversions
+    - -Wshadow              # Warns about variable shadowing
+    - -Wnon-virtual-dtor    # Warns about base classes without virtual destructors
+
+Diagnostics:
+  UnusedIncludes: Strict    # Reports unused includes
+  MissingIncludes: Strict   # Reports missing includes

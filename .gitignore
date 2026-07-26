@@ -1,0 +1,20 @@
+# ================================
+# Git will ignore these files/folders
+# ================================
+
+# Generated
+.DS_Store
+.cache/
+compile_commands.json
+Build/*
+!Build/.gitkeep
+
+# Third party libraries
+External/*
+!External/.clang-format
+!External/.clang-tidy
+
+# Local data and large binary assets
+Data/*
+!Data/Shaders
+!Data/Shaders/**

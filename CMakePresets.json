@@ -1,0 +1,174 @@
+{
+    "version": 6,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 25,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "win-debug",
+            "displayName": "Windows Debug",
+            "generator": "Ninja",
+            "binaryDir": "Build/Windows/Debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            },
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            }
+        },
+        {
+            "name": "win-relwithdebinfo",
+            "displayName": "Windows Release (w/Debug)",
+            "generator": "Ninja",
+            "binaryDir": "Build/Windows/ReleaseWithDebug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "RelWithDebInfo"
+            },
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            }
+        },
+        {
+            "name": "win-release",
+            "displayName": "Windows Release",
+            "generator": "Ninja",
+            "binaryDir": "Build/Windows/Release",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            },
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            }
+        },
+        {
+            "name": "mac-debug",
+            "displayName": "MacOS Debug",
+            "generator": "Ninja",
+            "binaryDir": "Build/Mac/Debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            },
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Darwin"
+            }
+        },
+        {
+            "name": "mac-relwithdebinfo",
+            "displayName": "MacOS Release (w/Debug)",
+            "generator": "Ninja",
+            "binaryDir": "Build/Mac/ReleaseWithDebug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "RelWithDebInfo"
+            },
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Darwin"
+            }
+        },
+        {
+            "name": "mac-release",
+            "displayName": "MacOS Release",
+            "generator": "Ninja",
+            "binaryDir": "Build/Mac/Release",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            },
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Darwin"
+            }
+        },
+        {
+            "name": "linux-release",
+            "displayName": "Linux Release",
+            "generator": "Ninja",
+            "binaryDir": "Build/Linux/Release",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            },
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Linux"
+            }
+        },
+        {
+            "name": "linux-debug",
+            "displayName": "Linux Debug",
+            "generator": "Ninja",
+            "binaryDir": "Build/Linux/Debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            },
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Linux"
+            }
+        },
+        {
+            "name": "linux-relwithdebinfo",
+            "displayName": "Linux Release (w/Debug)",
+            "generator": "Ninja",
+            "binaryDir": "Build/Linux/ReleaseWithDebug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "RelWithDebInfo"
+            },
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Linux"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "win-debug-build",
+            "configurePreset": "win-debug"
+        },
+        {
+            "name": "win-relwithdebinfo-build",
+            "configurePreset": "win-relwithdebinfo"
+        },
+        {
+            "name": "win-release-build",
+            "configurePreset": "win-release"
+        },
+        {
+            "name": "mac-debug-build",
+            "configurePreset": "mac-debug"
+        },
+        {
+            "name": "mac-relwithdebinfo-build",
+            "configurePreset": "mac-relwithdebinfo"
+        },
+        {
+            "name": "mac-release-build",
+            "configurePreset": "mac-release"
+        },
+        {
+            "name": "linux-debug-build",
+            "configurePreset": "linux-debug"
+        },
+        {
+            "name": "linux-relwithdebinfo-build",
+            "configurePreset": "linux-relwithdebinfo"
+        },
+        {
+            "name": "linux-release-build",
+            "configurePreset": "linux-release"
+        }
+    ]
+}

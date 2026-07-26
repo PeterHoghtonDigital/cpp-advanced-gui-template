@@ -1,0 +1,31 @@
+{
+    // ================================
+    // Debug Configurations ('Ctrl + Shift + D')
+    // ================================
+    "version": "0.2.0",
+    "configurations": [
+        {
+            // Debugs without building (must build manually first)
+            "name": "Debug",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${command:cmake.launchTargetPath}",
+            "cwd": "${command:cmake.buildDirectory}",
+            "args": [],
+            "stopOnEntry": false,
+            "console": "integratedTerminal"
+        },
+        {
+            // Builds first, then starts debugging
+            "name": "Build & Debug",
+            "type": "lldb",
+            "request": "launch",
+            "preLaunchTask": "Build", // Defined in 'tasks.json'
+            "program": "${command:cmake.launchTargetPath}",
+            "cwd": "${command:cmake.buildDirectory}",
+            "args": [],
+            "stopOnEntry": false,
+            "console": "integratedTerminal"
+        }
+    ]
+}

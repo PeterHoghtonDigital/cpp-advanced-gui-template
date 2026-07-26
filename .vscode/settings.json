@@ -1,0 +1,29 @@
+{
+    // ================================
+    // Project-specific Settings
+    // ================================
+    "[cpp]": {
+        // Uses clangd as the formatter and automatically formats on save
+        "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
+        "editor.formatOnSave": true
+    },
+    // Sets CMake to automatically configure when project is opened
+    "cmake.configureOnOpen": true,
+    "cmake.configureOnEdit": false,
+    "cmake.automaticReconfigure": false,
+    "cmake.modifyLists.addNewSourceFiles": "no", // Prevents 'CMakeLists.txt' from adding source files to executable when created - we use GLOB CONFIGURE_DEPENDS instead
+    "cmake.useCMakePresets": "always", // Forces CMake to use configurations defined in 'CMakePresets.json'
+    "cmake.buildTask": true, // Uses the build task defined in 'tasks.json'
+    "cmake.buildBeforeRun": false,
+    // Copies 'compile_commands.json' to the workspace root for clangd to use
+    "cmake.copyCompileCommands": "${workspaceFolder}/compile_commands.json",
+    // Excludes generated files from search results
+    "search.exclude": {
+        "**/.cache": true,
+        "**/.github": true,
+        "**/.vscode": true,
+        "**/Build": true,
+        "compile_commands.json": true,
+        "LICENSE.md": true
+    }
+}
