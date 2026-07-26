@@ -53,6 +53,15 @@ int main()
 	// 	- VK_PRESENT_MODE_MAILBOX_KHR = V-Sync On (Triple Buffering)
 	const VkPresentModeKHR VSync = VK_PRESENT_MODE_MAILBOX_KHR;
 
+	// Initialize Vulkan
+	if (!Vulkan::Init(Window, VSync))
+	{
+		glfwDestroyWindow(Window);
+		glfwTerminate();
+		std::cerr << "Failed to initialize Vulkan..." << '\n';
+		return -1;
+	}
+
 	// Initialize ImGui
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
@@ -72,16 +81,39 @@ int main()
 		Style.WindowRounding = 0.0f;
 		Style.Colors[ImGuiCol_WindowBg].w = 1.0f;
 	}
-	ImGui_ImplGlfw_InitForVulkan(Window, true);
-
-	// Initialize Vulkan
-	if (!Vulkan::Init(Window, VSync))
+	if (!ImGui_ImplGlfw_InitForVulkan(Window, true))
+	{
+		ImGui::DestroyContext();
+		Vulkan::Shutdown();
+		glfwDestroyWindow(Window);
+		glfwTerminate();
+		std::cerr << "Failed to initialize the ImGui GLFW backend..." << '\n';
+		return -1;
+	}
+	ImGui_ImplVulkan_InitInfo InitInfo{};
+	InitInfo.ApiVersion = VK_API_VERSION_1_3; // Must match the Vulkan version in Vulkan::Init()
+	InitInfo.Instance = Vulkan::Instance;
+	InitInfo.PhysicalDevice = Vulkan::PhysicalDevice;
+	InitInfo.Device = Vulkan::Device;
+	InitInfo.QueueFamily = Vulkan::QueueFamily;
+	InitInfo.Queue = Vulkan::Queue;
+	InitInfo.PipelineCache = VK_NULL_HANDLE;
+	InitInfo.DescriptorPool = Vulkan::DescriptorPool;
+	InitInfo.MinImageCount = Vulkan::MINIMUM_IMAGE_COUNT;
+	InitInfo.ImageCount = Vulkan::MainWindowData.ImageCount;
+	InitInfo.Allocator = nullptr;
+	InitInfo.PipelineInfoMain.RenderPass = Vulkan::MainWindowData.RenderPass;
+	InitInfo.PipelineInfoMain.Subpass = 0;
+	InitInfo.PipelineInfoMain.MSAASamples = VK_SAMPLE_COUNT_1_BIT;
+	InitInfo.CheckVkResultFn = Vulkan::CheckVkResult;
+	if (!ImGui_ImplVulkan_Init(&InitInfo))
 	{
 		ImGui_ImplGlfw_Shutdown();
 		ImGui::DestroyContext();
+		Vulkan::Shutdown();
 		glfwDestroyWindow(Window);
 		glfwTerminate();
-		std::cerr << "Failed to initialize Vulkan..." << '\n';
+		std::cerr << "Failed to initialize the ImGui Vulkan backend..." << '\n';
 		return -1;
 	}
 
@@ -164,15 +196,11 @@ int main()
 	Mesh.Destroy();
 	// ----------------------------------------------
 
-	// Destroy ImGui
+	// Destroy ImGui, Vulkan and GLFW
 	ImGui_ImplVulkan_Shutdown();
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
-
-	// Destroy Vulkan
 	Vulkan::Shutdown();
-
-	// Destroy GLFW
 	glfwDestroyWindow(Window);
 	glfwTerminate();
 

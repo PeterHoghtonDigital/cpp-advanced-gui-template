@@ -236,30 +236,6 @@ namespace Vulkan
 				nullptr, Width, Height, MINIMUM_IMAGE_COUNT, 0);
 		}
 
-		// Connect ImGui to Vulkan
-		{
-			ImGui_ImplVulkan_InitInfo InitInfo{};
-			InitInfo.ApiVersion = VK_API_VERSION_1_3;
-			InitInfo.Instance = Instance;
-			InitInfo.PhysicalDevice = PhysicalDevice;
-			InitInfo.Device = Device;
-			InitInfo.QueueFamily = QueueFamily;
-			InitInfo.Queue = Queue;
-			InitInfo.PipelineCache = VK_NULL_HANDLE;
-			InitInfo.DescriptorPool = DescriptorPool;
-			InitInfo.MinImageCount = MINIMUM_IMAGE_COUNT;
-			InitInfo.ImageCount = MainWindowData.ImageCount;
-			InitInfo.Allocator = nullptr;
-			InitInfo.PipelineInfoMain.RenderPass = MainWindowData.RenderPass;
-			InitInfo.PipelineInfoMain.Subpass = 0;
-			InitInfo.PipelineInfoMain.MSAASamples = VK_SAMPLE_COUNT_1_BIT;
-			InitInfo.CheckVkResultFn = CheckVkResult;
-			if (!ImGui_ImplVulkan_Init(&InitInfo))
-			{
-				return false;
-			}
-		}
-
 		return true;
 	}
 

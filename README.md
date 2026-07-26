@@ -78,7 +78,7 @@ https://open-vsx.org/vscode/item?itemName=ms-vscode.hexeditor
 *(Optional)* Verify via terminal `clang --version` - should display clang version number.
 
 ### 3) Vulkan SDK
-*Vulkan headers, loader and shader compiler.*
+*Vulkan headers, loader and shader compiler.*<br>
 https://vulkan.lunarg.com/sdk/home
 
 - **Windows**
