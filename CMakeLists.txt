@@ -104,7 +104,7 @@ if(APPLE)
     find_library(COCOA Cocoa)
     find_library(IOKIT IOKit)
     find_library(COREVIDEO CoreVideo)
-    target_link_libraries(cpp-advanced-gui-template ${COCOA} ${IOKIT} ${COREVIDEO})
+    target_link_libraries(cpp-advanced-gui-template PRIVATE ${COCOA} ${IOKIT} ${COREVIDEO})
 endif()
 
 # Find GLSL Shader Compiler
