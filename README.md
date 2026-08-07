@@ -172,7 +172,6 @@ Use the terminal command: `git config --global user.email youremail@example.com`
 ### Project Structure
 
 ```
-.cache/
 .github/
 .vscode/
 ├─ launch.json

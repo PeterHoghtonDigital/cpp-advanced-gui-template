@@ -17,9 +17,9 @@ Before submitting a bug report:
 
 ## Environment
 
-- OS *(Windows/macOS/Linux)*:
+- OS: *(Windows/macOS/Linux)*
 - Kernel version:
-- Windowing System (Linux Only): *(X11/Wayland)*
+- Windowing System *(Linux Only)*: *(X11/Wayland)*
 - GPU + Graphics Driver version: *(Nvidia/AMD/Intel) + version*
 - Vulkan version: *(default: 1.3)*
 - VSCodium version:
