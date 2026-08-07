@@ -125,6 +125,8 @@ namespace Vulkan
 		// Create the GLFW surface
 		if (glfwCreateWindowSurface(Instance, Window, nullptr, &MainWindowData.Surface) != VK_SUCCESS)
 		{
+			vkDestroyInstance(Instance, nullptr);
+			Instance = VK_NULL_HANDLE;
 			return false;
 		}
 
@@ -134,6 +136,10 @@ namespace Vulkan
 
 			if (PhysicalDevice == VK_NULL_HANDLE)
 			{
+				vkDestroySurfaceKHR(Instance, MainWindowData.Surface, nullptr);
+				vkDestroyInstance(Instance, nullptr);
+				MainWindowData.Surface = VK_NULL_HANDLE;
+				Instance = VK_NULL_HANDLE;
 				return false;
 			}
 
@@ -141,6 +147,10 @@ namespace Vulkan
 
 			if (QueueFamily == static_cast<uint32_t>(-1))
 			{
+				vkDestroySurfaceKHR(Instance, MainWindowData.Surface, nullptr);
+				vkDestroyInstance(Instance, nullptr);
+				MainWindowData.Surface = VK_NULL_HANDLE;
+				Instance = VK_NULL_HANDLE;
 				return false;
 			}
 
@@ -152,6 +162,9 @@ namespace Vulkan
 			if (Supported != VK_TRUE)
 			{
 				vkDestroySurfaceKHR(Instance, MainWindowData.Surface, nullptr);
+				vkDestroyInstance(Instance, nullptr);
+				MainWindowData.Surface = VK_NULL_HANDLE;
+				Instance = VK_NULL_HANDLE;
 
 				return false;
 			}

@@ -99,7 +99,7 @@ https://vulkan.lunarg.com/sdk/home
 
 (Optional) Verify via terminal `glslc --version` - should display the glslc version number.
 
-### 3) Build Tools
+### 4) Build Tools
 
 **CMake**<br>
 *Build configuration.*<br>
@@ -136,7 +136,7 @@ https://github.com/ninja-build/ninja/releases
 
 *(Optional)* Verify via terminal `ninja --version` - should display ninja version number.
 
-### 4) Version Control
+### 5) Version Control
 
 **Git**<br>
 *Open source version control.*<br>
